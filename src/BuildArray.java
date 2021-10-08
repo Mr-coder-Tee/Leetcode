@@ -1,0 +1,19 @@
+
+public class BuildArray {
+//1920.
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public static int[] buildArray(int[] nums) {
+		int[]ans=new int[nums.length];
+		for(int i=0;i<nums.length;i++) {
+			int temp=nums[i];
+			ans[i]=nums[temp];
+		}
+        
+		return ans;
+    }
+
+	
+}
