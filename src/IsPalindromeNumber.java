@@ -1,14 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Template {
+public class IsPalindromeNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
 	
-	
+	 public boolean isPalindrome(int x) {
+	        if(x<0)return false;
+	        if(x<9)return true;
+	        int rev=0;
+	        int var=x;
+	        
+	        while(var>0){
+	            int l=var%10;
+	            rev=rev*10+l;
+	            var/=10;
+	            System.out.println("x:"+var);
+	        }
+	        
+	        return rev==x;
+	    }
 	
 	
 	

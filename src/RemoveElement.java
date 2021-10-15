@@ -1,14 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Template {
+public class RemoveElement {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
 	
-	
+	 public int removeElement(int[] nums, int val) {
+	        int ans=0;
+	        for(int i=0;i<nums.length;i++)
+	        {
+	            if(nums[i]!=val)
+	            {
+	                
+	                nums[ans]=nums[i];
+	                ans++;
+	            }
+	        }
+	        
+	        return ans;
+	        
+	    }
 	
 	
 	

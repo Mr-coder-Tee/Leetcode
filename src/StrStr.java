@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Template {
+public class StrStr {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -9,7 +9,11 @@ public class Template {
 	}
 	
 	
-	
+	public int strStr(String haystack, String needle) {
+        if(needle.length()==0)return 0;
+        
+        return haystack.indexOf(needle);
+    }
 	
 	
 	static  class ListNode {

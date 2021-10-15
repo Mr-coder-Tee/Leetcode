@@ -1,13 +1,29 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Template {
+public class LongestCommonPrefix {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
-	
+	 public String longestCommonPrefix(String[] strs) {
+         int i=strs[0].length();
+        for(;i>0;i--)
+        {
+            String sub=strs[0].substring(0,i);
+            for(String word:strs){
+                if(word.indexOf(sub)!=0)
+                {
+                    sub="";
+                    break;
+                }
+            }
+            if(!sub.isEmpty())
+                return sub;
+        }
+        return "";
+    }
 	
 	
 	

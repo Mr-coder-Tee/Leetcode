@@ -1,13 +1,31 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
-public class Template {
+public class IsPalindrome {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		// https://leetcode.com/problems/valid-palindrome/
+		 System.out.println(isPalindrome("0P"));
 	}
-	
+	public static boolean isPalindrome(String s) {
+		s=s.toLowerCase();
+        ArrayList<Character>list=new ArrayList<>();
+        String str="";
+        for(char l:s.toCharArray()) {
+        	if(Character.isLetter(l)) {
+        		str+=l;
+        		list.add(l);
+        	}
+        }
+        Collections.reverse(list);
+        String reversed="";
+        for(char l:list) {
+        	reversed+=l;
+        }
+        
+        
+        return str.equals(reversed);
+    }
 	
 	
 	
@@ -31,23 +49,6 @@ public class Template {
 	          this.right = right;
 	      }
 	 }
-	
-	static class Node {
-	    public int val;
-	    public List<Node> neighbors;
-	    public Node() {
-	        val = 0;
-	        neighbors = new ArrayList<Node>();
-	    }
-	    public Node(int _val) {
-	        val = _val;
-	        neighbors = new ArrayList<Node>();
-	    }
-	    public Node(int _val, ArrayList<Node> _neighbors) {
-	        val = _val;
-	        neighbors = _neighbors;
-	    }
-	}
 
 }
 
