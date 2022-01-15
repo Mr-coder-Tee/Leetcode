@@ -1,43 +1,46 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
-public class NumIslands {
+public class isValidBST {
 
 	public static void main(String[] args) {
-		// https://leetcode.com/problems/number-of-islands/
-		System.out.println(numIslands(new char[][] {{'1','1','1','1','0'},
-													{'1','1','0','1','0'},
-													{'1','1','0','0','0'},
-											{'0','0','0','0','1'}}));
+		// TODO Auto-generated method stub
+		TreeNode root=new TreeNode(5);
+		TreeNode child4=new TreeNode(4);
+		TreeNode child6=new TreeNode(6);
+		TreeNode child3=new TreeNode(3);
+		TreeNode child7=new TreeNode(7);
+		root.left=child4;
+		root.right=child6;
+		child6.right=child7;
+		child6.left=child3;
 		
 		
+		System.out.println(isValidBST(root));
 	}
 	
-	public static int numIslands(char[][] grid) {
-		int count=0;
-		for(int i=0;i<grid.length;i++) {
-			for(int j=0;j<grid[i].length;j++) {
-				if(grid[i][j]=='1') {
-					count+=1;
-					bfs(grid,i,j);
-				}
-			}
-		}
-		System.out.println("-"+Arrays.deepToString(grid));
-		return count;
-    }
-	public static void bfs(char[][] grid,int i,int j) {
-		if(i<0||i>=grid.length||j<0||j>=grid[i].length||grid[i][j]=='0')return;
-		System.out.println("="+Arrays.deepToString(grid));
-		grid[i][j]='0';
-		bfs(grid,i+1,j);
-		bfs(grid,i-1,j);
-		bfs(grid,i,j-1);
-		bfs(grid,i,j+1);
-    }
 	
-	
+	 public static boolean isValidBST(TreeNode root) {
+		 Stack<TreeNode>stack=new Stack<>();
+		 stack.add(root);
+		 
+		 while(!stack.isEmpty()) {
+			 TreeNode curr=stack.pop();
+			 if(curr.left!=null&&curr.val<=curr.left.val&&curr.left.val>=root.val) {
+				 return false;
+			 }else if(curr.left!=null){
+				 stack.add(curr.left);
+			 }
+			 if(curr.right!=null&&curr.val>=curr.right.val&&curr.right.val<=root.val) {
+				 return false;
+			 }else if(curr.right!=null){
+				 stack.add(curr.right);
+			 }
+		 }
+		 
+		 return true;
+		 
+	 }
 	
 	
 	static  class ListNode {
