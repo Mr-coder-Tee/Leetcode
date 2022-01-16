@@ -1,29 +1,33 @@
-
+import java.util.*;
 public class MaxDepth {
 
 	public static void main(String[] args) {
 		// https://leetcode.com/problems/maximum-depth-of-binary-tree/
 		
-		TreeNode root=new TreeNode(3);
-		TreeNode left=new TreeNode(7);
-		TreeNode right=new TreeNode(9);
-		TreeNode rightleft=new TreeNode(31);
-		TreeNode rightright=new TreeNode(13);
+		Node root=new Node(3);
+		Node left=new Node(7);
+		Node right=new Node(9);
+		Node rightleft=new Node(31);
+		Node rightright=new Node(13);
 		
-		root.left=left;
-		root.right=right;
-		right.left=rightleft;
-		right.right=rightright;
+		root.children.add(right);
+		root.children.add(left);
+		left.children.add(rightleft);
+		rightleft.children.add(rightright);
 		System.out.println(maxDepth(root));
 
 	}
-	public static int maxDepth(TreeNode root) {
+	public static int maxDepth(Node root) {
         if(root==null)return 0;
         
-        int left=maxDepth(root.left)+1;
-        int right=maxDepth(root.right)+1;
+        int max=1;
+        for(Node node:root.children) {
+        	int depth=maxDepth(node)+1;
+        	max=Math.max(depth, max);
+        }
         
-        return Math.max(left, right);
+        
+        return max;
     }
 	
 	
@@ -51,6 +55,21 @@ public class MaxDepth {
 	          this.right = right;
 	      }
 	 }
+	static class Node {
+	    public int val;
+	    public List<Node> children;
+
+	    public Node() {}
+
+	    public Node(int _val) {
+	        val = _val;
+	    }
+
+	    public Node(int _val, List<Node> _children) {
+	        val = _val;
+	        children = _children;
+	    }
+	};
 
 }
 

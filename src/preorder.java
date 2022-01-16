@@ -1,37 +1,42 @@
 import java.util.*;
 import java.util.List;
 
-public class increasingBST {
+public class preorder {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		//[1,null,3,2,4,null,5,6]
+		
+		Node root=new Node(1);
+		Node child=new Node(3);
+		root.neighbors.add(child);
+		root.neighbors.add(new Node(2));
+		root.neighbors.add(new Node(4));
+		child.neighbors.add(new Node(5));
+		child.neighbors.add(new Node(6));
+		System.out.println(preorder(root));
+		System.out.println("[1,3,5,6,2,4]");
 	}
 	
-	 public static TreeNode increasingBST(TreeNode root) {
-	        TreeNode ans=new TreeNode(0);
-	        List<Integer>list=new ArrayList<>();
-	        Stack <TreeNode>stack=new Stack<>();
-	        stack.push(root);
-	        
-	        while(!stack.isEmpty()) {
-	        	TreeNode curr=stack.pop();
-	        	list.add(curr.val);
-	        	if(curr.left!=null)stack.push(curr.left);
-	        	if(curr.right!=null)stack.push(curr.right);
-	        }
-	        
-	        Collections.sort(list);
-	        TreeNode iterater=ans;
-	        for(int num:list) {
-	        	TreeNode newNode=new TreeNode(num);
-	        	iterater.right=newNode;
-	        	iterater=iterater.right;
-	        }
-	        
-	      return ans.right;
-	    }
 	
+	public static List<Integer> preorder(Node root) {
+        Stack<Node>stack=new Stack<>();
+        List<Integer>ans=new ArrayList<>();
+        
+        stack.push(root);
+        
+        while(!stack.isEmpty()) {
+        	Node curr=stack.pop();
+        	
+        	ans.add(curr.val);
+        	List<Node>currList=curr.neighbors;
+        	for(int i=currList.size()-1;i>=0;i--) {
+        		stack.push(currList.get(i));
+        	}
+        }
+        
+        return ans;
+    }
 	
 	
 	static  class ListNode {

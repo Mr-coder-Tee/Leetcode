@@ -1,39 +1,42 @@
 import java.util.*;
 import java.util.List;
 
-public class increasingBST {
+
+public class isUnivalTree {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		TreeNode root=new TreeNode(4);
+		TreeNode child1=new TreeNode(4);
+		TreeNode child2=new TreeNode(4);
+		TreeNode child3=new TreeNode(4);
+		TreeNode child4=new TreeNode(3);
+		TreeNode child5=new TreeNode(4);
+		TreeNode child6=new TreeNode(4);
+		
+//		root.left=child1;
+//		root.right=child2;
+//		child1.left=child3;
+//		child1.right=child4;
+//		child2.left=child5;
+//		child2.right=child6;
+		System.out.println(isUnivalTree(root));
 
 	}
 	
-	 public static TreeNode increasingBST(TreeNode root) {
-	        TreeNode ans=new TreeNode(0);
-	        List<Integer>list=new ArrayList<>();
-	        Stack <TreeNode>stack=new Stack<>();
-	        stack.push(root);
-	        
-	        while(!stack.isEmpty()) {
-	        	TreeNode curr=stack.pop();
-	        	list.add(curr.val);
-	        	if(curr.left!=null)stack.push(curr.left);
-	        	if(curr.right!=null)stack.push(curr.right);
-	        }
-	        
-	        Collections.sort(list);
-	        TreeNode iterater=ans;
-	        for(int num:list) {
-	        	TreeNode newNode=new TreeNode(num);
-	        	iterater.right=newNode;
-	        	iterater=iterater.right;
-	        }
-	        
-	      return ans.right;
-	    }
 	
 	
-	
+	public static boolean isUnivalTree(TreeNode root) {
+		if(root==null)return true;
+        return dfs(root,root.val);
+    }
+	public static boolean dfs(TreeNode root,int val) {
+		if(root==null)return true;
+		if(root.val!=val)return false;
+		
+		return dfs(root.left,val)&&dfs(root.right,val);
+		
+	}
 	static  class ListNode {
 	      int val;
 	      ListNode next;
