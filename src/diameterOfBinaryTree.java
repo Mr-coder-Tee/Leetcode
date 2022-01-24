@@ -1,18 +1,36 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+//import Template.TreeNode;
+
+//import dfs.TreeNode;
+
+public class diameterOfBinaryTree {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer[] tree = new Integer[]{1, null, 2, 3};
-		TreeNode root=new TreeNode();
-		TreeNode r=root.arrayToTree(tree);
-		System.out.println(r.val);
+		TreeNode r=new TreeNode();
+		Integer[]num=new Integer[] {1,2,3,4,5};
+		
+		TreeNode root=r.arrayToTree(num);
+		
+		System.out.println(diameterOfBinaryTree(root));
+
 	}
 	
 	
-	
+	public static int diameterOfBinaryTree(TreeNode root) {
+		if(root==null)return 0;
+		System.out.println(root.val);
+		int left=diameterOfBinaryTree(root.left)+1;
+		int right=diameterOfBinaryTree(root.right)+1;
+		System.out.println("left:"+left+", right:"+right);
+		System.out.println("max: "+Math.max(left, right));
+		
+		return Math.max(left, right);
+		
+		
+    }
 	
 	
 	static  class ListNode {
@@ -22,11 +40,14 @@ public class Template {
 	      ListNode(int val) { this.val = val; }
 	      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 	  }
+	
 	static class TreeNode {
 	      int val;
 	      TreeNode left;
 	      TreeNode right;
-	      TreeNode() {}
+	      TreeNode(){
+	    	  
+	      }
 	      TreeNode(int val) { this.val = val; }
 	      TreeNode(int val, TreeNode left, TreeNode right) {
 	          this.val = val;
@@ -43,6 +64,7 @@ public class Template {
 	    	        return null;
 	    	    return new TreeNode(array[index], arrayToTree(array, index * 2 + 1), arrayToTree(array, index * 2 + 2));
 	    	}
+	     
 	 }
 	
 	static class Node {

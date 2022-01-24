@@ -1,19 +1,56 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+//import sumRootToLeaf.TreeNode;
+
+public class minDiffInBST {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer[] tree = new Integer[]{1, null, 2, 3};
-		TreeNode root=new TreeNode();
-		TreeNode r=root.arrayToTree(tree);
-		System.out.println(r.val);
+		TreeNode root=new TreeNode(4);
+		TreeNode root1=new TreeNode(2);
+		TreeNode root2=new TreeNode(6);
+		TreeNode root3=new TreeNode(1);
+		TreeNode root4=new TreeNode(3);
+		TreeNode root5=new TreeNode(0);
+		TreeNode root6=new TreeNode(1);
+		
+		root.left=root1;
+		root.right=root2;
+		root1.left=root3;
+		root1.right=root4;
+//		root2.left=root5;
+//		root2.right=root6;
+		System.out.println(minDiffInBST(root));
+//		minDiffInBST(root);
+
 	}
 	
 	
 	
-	
+	 public static int minDiffInBST(TreeNode root) {
+	        List<Integer>list=new ArrayList<>();
+	        dfs(root,list);
+	        
+	        Collections.sort(list);
+	        int min=Integer.MAX_VALUE;
+	        
+	        for(int i=0;i<list.size()-1;i++) {
+	        	int diff=list.get(i+1)-list.get(i);
+	        	min=Math.min(min, diff);
+	        }
+	        
+	        
+	        return min;
+	        
+	 }
+	 public static void dfs(TreeNode root,List<Integer>list) {
+		 if(root==null)return;
+		 list.add(root.val);
+		 
+		 dfs(root.left,list);
+		 dfs(root.right,list);
+	 }
 	
 	static  class ListNode {
 	      int val;
@@ -33,16 +70,6 @@ public class Template {
 	          this.left = left;
 	          this.right = right;
 	      }
-	      public static TreeNode arrayToTree(Integer array[]) {
-	    	    return arrayToTree(array, 0);
-	      }
-	     public static TreeNode arrayToTree(Integer array[], int index) {
-	    	    if (index >= array.length)
-	    	        return null;
-	    	    if (array[index] == null)
-	    	        return null;
-	    	    return new TreeNode(array[index], arrayToTree(array, index * 2 + 1), arrayToTree(array, index * 2 + 2));
-	    	}
 	 }
 	
 	static class Node {

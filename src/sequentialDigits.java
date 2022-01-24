@@ -1,16 +1,26 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class sequentialDigits {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer[] tree = new Integer[]{1, null, 2, 3};
-		TreeNode root=new TreeNode();
-		TreeNode r=root.arrayToTree(tree);
-		System.out.println(r.val);
+		sequentialDigits(100,300);
 	}
-	
+	 public static List<Integer> sequentialDigits(int low, int high) {
+		 String digits = "123456789";
+	        List<Integer> res = new ArrayList<>();
+	        int nl = String.valueOf(low).length();
+	        int nh = String.valueOf(high).length();
+	        
+	        for(int i = nl; i <= nh; i++){
+	            for(int j = 0; j < 10 - i; j++){
+	                int num = Integer.parseInt(digits.substring(j, j + i));
+	                if(num >= low && num <= high) res.add(num);
+	            }
+	        }
+	        return res;
+	    }
 	
 	
 	
@@ -33,16 +43,6 @@ public class Template {
 	          this.left = left;
 	          this.right = right;
 	      }
-	      public static TreeNode arrayToTree(Integer array[]) {
-	    	    return arrayToTree(array, 0);
-	      }
-	     public static TreeNode arrayToTree(Integer array[], int index) {
-	    	    if (index >= array.length)
-	    	        return null;
-	    	    if (array[index] == null)
-	    	        return null;
-	    	    return new TreeNode(array[index], arrayToTree(array, index * 2 + 1), arrayToTree(array, index * 2 + 2));
-	    	}
 	 }
 	
 	static class Node {

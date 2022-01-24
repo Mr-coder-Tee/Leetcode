@@ -1,16 +1,28 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class canCompleteCircuit {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer[] tree = new Integer[]{1, null, 2, 3};
-		TreeNode root=new TreeNode();
-		TreeNode r=root.arrayToTree(tree);
-		System.out.println(r.val);
+		System.out.println(canCompleteCircuit(new int[] {1,2,3,4,5},new int[] {3,4,5,1,2}));
 	}
-	
+	public static int canCompleteCircuit(int[] gas, int[] cost) {
+		int tank=0;
+        for(int i=0;i<cost.length;i++) {
+        	int c=cost[i];
+        	int g=1;
+        	if(c<gas.length) {
+        		g=gas[c];
+        	}
+        	tank=tank-i+g;
+        	if(tank<0) {
+        		return -1;
+        	}
+        }
+        
+        return tank;
+    }
 	
 	
 	
@@ -33,16 +45,6 @@ public class Template {
 	          this.left = left;
 	          this.right = right;
 	      }
-	      public static TreeNode arrayToTree(Integer array[]) {
-	    	    return arrayToTree(array, 0);
-	      }
-	     public static TreeNode arrayToTree(Integer array[], int index) {
-	    	    if (index >= array.length)
-	    	        return null;
-	    	    if (array[index] == null)
-	    	        return null;
-	    	    return new TreeNode(array[index], arrayToTree(array, index * 2 + 1), arrayToTree(array, index * 2 + 2));
-	    	}
 	 }
 	
 	static class Node {

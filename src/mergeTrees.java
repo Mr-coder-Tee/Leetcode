@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class mergeTrees {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
