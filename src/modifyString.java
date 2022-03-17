@@ -1,25 +1,68 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class modifyString {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Integer[] tree = new Integer[]{1, null, 2, 3};
 		TreeNode root=new TreeNode();
 		TreeNode r=root.arrayToTree(tree);
+		
+		System.out.println(modifyString("o?m"));
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public static String modifyString(String s) {
+		
+		if(s.length()==1) {
+			if(s.equals("?"))return "a";
+			return s;
+		}
+			
+		Random r=new Random();
+		String s2=s;
+		
+        while(s2.indexOf('?')!=-1) {
+        	int index=s2.indexOf('?');
+        	int num=Math.abs(r.RandomInt(0, Integer.MAX_VALUE))%26;
+        	
+        	String replacer=Character.toString('a'+num);
+        	String backup=Character.toString('a'+(num/2)+1);
+        	
+        	if(index==s.length()-1) {
+        		if(s.charAt(s.length()-2)==replacer.charAt(0)) {
+        			s2=s2.substring(0,index)+backup;
+        		}else {
+        			s2=s2.substring(0,index)+replacer;
+        		}
+        		
+        	}
+        	else if(index==0) {
+        		if(s.charAt(1)==replacer.charAt(0)) {
+        			s2=backup+s2.substring(1);
+        		}else {
+        			s2=replacer+s2.substring(1);
+        		}
+        		
+        	}
+        	else {
+        		if(s.charAt(index-1)==replacer.charAt(0)) {
+        			s2=s2.substring(0,index)+backup+s2.substring(index+1);
+        		}else {
+        			s2=s2.substring(0,index)+replacer+s2.substring(index+1);
+        		}
+        		if(s.charAt(index+1)==replacer.charAt(0)) {
+        			s2=s2.substring(0,index)+backup+s2.substring(index+1);
+        		}else {
+        			s2=s2.substring(0,index)+replacer+s2.substring(index+1);
+        		}
+        		
+        	}
+        	
+        }
+        
+        return s2;
+    }
 	
 	
 	static class Random{
@@ -37,17 +80,6 @@ public class Template {
 	      ListNode() {}
 	      ListNode(int val) { this.val = val; }
 	      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-	      public ListNode arrayToListNode(int[] array) {
-	    	  ListNode head=new ListNode(-1);
-	    	  ListNode tracker=head;
-	    	  
-	    	  for(int num:array) {
-	    		  ListNode newNode=new ListNode(num);
-	    		  tracker.next=newNode;
-	    		  tracker=tracker.next;
-	    	  }
-	    	  return head.next;
-	      }
 	  }
 	static class TreeNode {
 	      int val;

@@ -1,35 +1,28 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class SumOfLeftLeaves {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer[] tree = new Integer[]{1, null, 2, 3};
+		Integer[] tree = new Integer[]{3,9,20,null,null,15,7};
 		TreeNode root=new TreeNode();
 		TreeNode r=root.arrayToTree(tree);
+		System.out.println(sumOfLeftLeaves(r));
 	}
 	
+	public static int sumOfLeftLeaves(TreeNode root) {
+		if(root==null)return 0;
+		if(root.left==null&&root.right==null)return 0;
+		TreeNode leftthing=root.left;
+		if(leftthing.left==null)return leftthing.val;
+		
+		
+		
+        return sumOfLeftLeaves(root.left)+sumOfLeftLeaves(root.right);
+    }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	static class Random{
-		public int RandomInt(int min,int max) {
-			return (int)Math.floor(Math.random()*(max-min+1)+min);
-		}
-		public double RandomDouble(double min,double max) {
-			return Math.random()*(max-min+1)+min;
-		}
-	}
 	
 	static  class ListNode {
 	      int val;
@@ -37,17 +30,6 @@ public class Template {
 	      ListNode() {}
 	      ListNode(int val) { this.val = val; }
 	      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-	      public ListNode arrayToListNode(int[] array) {
-	    	  ListNode head=new ListNode(-1);
-	    	  ListNode tracker=head;
-	    	  
-	    	  for(int num:array) {
-	    		  ListNode newNode=new ListNode(num);
-	    		  tracker.next=newNode;
-	    		  tracker=tracker.next;
-	    	  }
-	    	  return head.next;
-	      }
 	  }
 	static class TreeNode {
 	      int val;

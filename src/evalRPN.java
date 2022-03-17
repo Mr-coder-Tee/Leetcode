@@ -1,17 +1,45 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class evalRPN {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Integer[] tree = new Integer[]{1, null, 2, 3};
 		TreeNode root=new TreeNode();
 		TreeNode r=root.arrayToTree(tree);
+		System.out.println(evalRPN(new String[] {"2","1","+","3","*"}));
+		System.out.println(evalRPN(new String[] {"4","13","5","/","+"}));
+		System.out.println(evalRPN(new String[] {"10","6","9","3","+","-11","*","/","*","17","+","5","+"}));
+		System.out.println(evalRPN(new String[] {"4","3","-"}));
 	}
 	
 	
-	
+	 public static int evalRPN(String[] tokens) {
+		 Stack<Integer>stc=new Stack<>();
+		 
+		 for(String num:tokens) {
+			 if(num.equals("*")||num.equals("+")||num.equals("-")||num.equals("/")) {
+				 int a=stc.pop();
+				 int b=stc.pop();
+				 int result=0;
+				 if(num.equals("*")) {
+					 result=a*b;
+				 }else if(num.equals("/")) {
+					 result=b/a;
+				 }else if(num.equals("+")) {
+					 result=a+b;
+				 }else {
+					 result=b-a;
+				 }
+				 stc.add(result);
+				 
+			 }else {
+				 stc.add(Integer.parseInt(num));
+			 }
+		 }
+		 return stc.pop();
+	  }
 	
 	
 	
@@ -37,17 +65,6 @@ public class Template {
 	      ListNode() {}
 	      ListNode(int val) { this.val = val; }
 	      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-	      public ListNode arrayToListNode(int[] array) {
-	    	  ListNode head=new ListNode(-1);
-	    	  ListNode tracker=head;
-	    	  
-	    	  for(int num:array) {
-	    		  ListNode newNode=new ListNode(num);
-	    		  tracker.next=newNode;
-	    		  tracker=tracker.next;
-	    	  }
-	    	  return head.next;
-	      }
 	  }
 	static class TreeNode {
 	      int val;

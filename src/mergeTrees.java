@@ -5,15 +5,27 @@ public class mergeTrees {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer[] tree = new Integer[]{1, null, 2, 3};
-		TreeNode root=new TreeNode();
-		TreeNode r=root.arrayToTree(tree);
-		System.out.println(r.val);
+		Integer[] tree = new Integer[]{1,3,2,5};
+		Integer[] tree2 = new Integer[]{2,1,3,null,4,null,7};
+		TreeNode root1=new TreeNode();
+		TreeNode root2=new TreeNode();
+		TreeNode r=root1.arrayToTree(tree);
+		TreeNode r2=root2.arrayToTree(tree2);
+		mergeTrees(r,r2);
 	}
 	
 	
 	
-	
+public static TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if(root1==null&&root2==null)return null;
+        if(root1==null)return null;
+        if(root2==null)return null;
+        TreeNode ans=new TreeNode(root1.val+root2.val);
+        
+        
+        
+        
+    }
 	
 	static  class ListNode {
 	      int val;

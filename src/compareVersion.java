@@ -1,16 +1,60 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class compareVersion {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Integer[] tree = new Integer[]{1, null, 2, 3};
 		TreeNode root=new TreeNode();
 		TreeNode r=root.arrayToTree(tree);
+//		System.out.println(compareVersion("1.0","1.0.0"));
+//		System.out.println(compareVersion("1.01","1.001"));
+//		System.out.println(compareVersion("0.1","1.1"));
+//		System.out.println(compareVersion("1.23.0","1.023.0"));
+		System.out.println(compareVersion("1.0","1.10"));
 	}
 	
-	
+	public static int compareVersion(String version1, String version2) {
+
+		List<Integer>v1List=new ArrayList<>();
+		List<Integer>v2List=new ArrayList<>();
+		String[] arr1=version1.split("\\.");
+		for(String numStr:arr1) {
+			v1List.add(Integer.parseInt(numStr));
+		}
+		String[] arr2=version2.split("\\.");
+		for(String numStr:arr2) {
+			v2List.add(Integer.parseInt(numStr));
+		}
+		
+		
+		if(v1List.size()>v2List.size()) {
+			int len=v1List.size()-v2List.size();
+			int i=0;
+			while(i<len) {
+				v2List.add(0);
+				i++;
+			}
+		}else if(v1List.size()<v2List.size()) {
+			int len=v2List.size()-v1List.size();
+			int i=0;
+			while(i<len) {
+				v1List.add(0);
+				i++;
+			}
+		}
+		
+		for(int i=0;i<v1List.size();i++) {
+			if(v1List.get(i)>v2List.get(i)) {
+				return 1;
+			}else if(v1List.get(i)<v2List.get(i)) {
+				return -1;
+			}
+		}
+		
+		return 0;
+    }
 	
 	
 	
@@ -37,17 +81,6 @@ public class Template {
 	      ListNode() {}
 	      ListNode(int val) { this.val = val; }
 	      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-	      public ListNode arrayToListNode(int[] array) {
-	    	  ListNode head=new ListNode(-1);
-	    	  ListNode tracker=head;
-	    	  
-	    	  for(int num:array) {
-	    		  ListNode newNode=new ListNode(num);
-	    		  tracker.next=newNode;
-	    		  tracker=tracker.next;
-	    	  }
-	    	  return head.next;
-	      }
 	  }
 	static class TreeNode {
 	      int val;

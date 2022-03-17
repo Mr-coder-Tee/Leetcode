@@ -1,17 +1,24 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class titleToNumber {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Integer[] tree = new Integer[]{1, null, 2, 3};
 		TreeNode root=new TreeNode();
 		TreeNode r=root.arrayToTree(tree);
+		System.out.println(titleToNumber("Z"));
 	}
 	
 	
-	
+	 public static int titleToNumber(String columnTitle) {
+		 
+		 if(columnTitle.length()==1)return columnTitle.charAt(0)-'A'+1;
+	        
+		 return 26*titleToNumber(columnTitle.substring(0, columnTitle.length()-1));
+//		 return s.length()==0?0:(s.charAt(s.length()-1)-'A'+1)+26*titleToNumber(s.substring(0, s.length()-1));
+	 }
 	
 	
 	
@@ -37,17 +44,6 @@ public class Template {
 	      ListNode() {}
 	      ListNode(int val) { this.val = val; }
 	      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-	      public ListNode arrayToListNode(int[] array) {
-	    	  ListNode head=new ListNode(-1);
-	    	  ListNode tracker=head;
-	    	  
-	    	  for(int num:array) {
-	    		  ListNode newNode=new ListNode(num);
-	    		  tracker.next=newNode;
-	    		  tracker=tracker.next;
-	    	  }
-	    	  return head.next;
-	      }
 	  }
 	static class TreeNode {
 	      int val;

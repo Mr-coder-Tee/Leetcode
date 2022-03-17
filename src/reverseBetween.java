@@ -1,17 +1,59 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class reverseBetween {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Integer[] tree = new Integer[]{1, null, 2, 3};
 		TreeNode root=new TreeNode();
 		TreeNode r=root.arrayToTree(tree);
+		int []arr={1,2};
+		ListNode h=new ListNode();
+		ListNode head=h.arrayToListNode(arr);
+		ListNode l=reverseBetween(head,1,2);
+		
+		while(l!=null)
+		{
+			System.out.println(l.val);
+			l=l.next;
+		}
+		
 	}
 	
 	
-	
+	public static ListNode reverseBetween(ListNode head, int left, int right) {
+		if(left==right)return head;
+        	
+		int i=0,j=0;
+		ListNode first=null,last=null,curr=null;
+		ListNode h=head;
+		while(i<=left&&j<=right) {
+			
+			if(i+1==left) {
+				first=h;
+				curr=h.next;
+			}
+			if(j+1==right) {
+				last=h.next;
+			}
+			h=h.next;
+			i++;
+			j++;
+		}
+		
+		
+		int k=left;
+		while(k<right) {
+			ListNode temp=curr.next;
+			curr.next=last;
+			last=curr;
+			curr=temp;
+			k++;
+		}
+		first.next=curr;
+        return head;
+    }
 	
 	
 	

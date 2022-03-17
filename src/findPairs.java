@@ -1,35 +1,47 @@
 import java.util.*;
 import java.util.List;
 
-public class Template {
+public class findPairs {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Integer[] tree = new Integer[]{1, null, 2, 3};
 		TreeNode root=new TreeNode();
 		TreeNode r=root.arrayToTree(tree);
+		System.out.println(findPairs (new int []{3,1,4,1,5},2));
 	}
 	
+	public static int findPairs(int[] nums, int k) {
+        HashMap<Integer,List<Integer>>map=new HashMap<>();
+        int ans=0;
+        for(int i=0;i<nums.length;i++) {
+        	int val=Math.abs(k-nums[i]);
+        	if(map.containsKey(val)) {
+        		for(int j:map.get(val)) {
+        			if(j>i) {
+        				ans++;
+        			}
+        		}
+        		
+        	}else {
+        		List<Integer>list=new ArrayList<>();
+        		list.add(i);
+        		map.put(nums[i], list);
+        	}
+        }
+        return ans;
+    }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	static class Random{
-		public int RandomInt(int min,int max) {
-			return (int)Math.floor(Math.random()*(max-min+1)+min);
-		}
-		public double RandomDouble(double min,double max) {
-			return Math.random()*(max-min+1)+min;
-		}
-	}
+//	Map<Integer, Integer> map = new HashMap();
+//		for (int num : nums)
+//			map.put(num, map.getOrDefault(num, 0) + 1);
+//
+//		int result = 0;
+//		for (int i : map.keySet())
+//			if (k > 0 && map.containsKey(i + k) || k == 0 && map.get(i) > 1)
+//				result++;
+//		return result;
+
 	
 	static  class ListNode {
 	      int val;
@@ -37,17 +49,6 @@ public class Template {
 	      ListNode() {}
 	      ListNode(int val) { this.val = val; }
 	      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-	      public ListNode arrayToListNode(int[] array) {
-	    	  ListNode head=new ListNode(-1);
-	    	  ListNode tracker=head;
-	    	  
-	    	  for(int num:array) {
-	    		  ListNode newNode=new ListNode(num);
-	    		  tracker.next=newNode;
-	    		  tracker=tracker.next;
-	    	  }
-	    	  return head.next;
-	      }
 	  }
 	static class TreeNode {
 	      int val;
